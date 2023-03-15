@@ -37,7 +37,8 @@ public class DMRBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive ( Context cxt, Intent intent ) {
             mPrefUtils = new PrefUtils(cxt);
-            boolean bootstart = mPrefUtils.getBooleanVal(DmpStartFragment.KEY_BOOT_CFG,false);
+            //boolean bootstart = mPrefUtils.getBooleanVal(DmpStartFragment.KEY_BOOT_CFG,false);
+            boolean bootstart = true;
             boolean apkstart = mPrefUtils.getBooleanVal(DmpStartFragment.KEY_START_SERVICE,false);
             if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED) && bootstart) {
                 cxt.startService(new Intent(cxt,WeakRefService.class));

@@ -114,4 +114,8 @@
     <string name="pic_unspport">"此图不支持该操作"</string>
     <string name="error_info">"获取网络文件失败，为您续播下一首"</string>
     <string name="error_exit">"创建播放器失败，退出播放"</string>
+
+    <string name="menu_notice">按菜单键进行设置</string>
+    <string name="connect_notice">提示:请确保您的移动设备与“Smart_TV”处于同一网络。</string>
+    <string name="network_ethernet">有线</string>
 </resources>

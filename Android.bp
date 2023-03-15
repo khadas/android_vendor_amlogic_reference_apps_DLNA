@@ -13,7 +13,7 @@ license {
 android_app {
     name: "DLNA",
 
-    static_libs: ["libdlna","androidx.appcompat_appcompat"],
+    static_libs: ["libdlna","androidx.appcompat_appcompat","androidx-constraintlayout_constraintlayout"],
     srcs: ["src/**/*.java"],
     proprietary: true,
     certificate: "platform",

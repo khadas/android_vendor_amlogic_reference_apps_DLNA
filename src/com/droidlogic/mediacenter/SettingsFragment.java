@@ -120,6 +120,10 @@ public class SettingsFragment extends SettingsPreferenceFragment implements
                 .setSummary ( prefs.getString ( KEY_DEVICE_NAME,
                                                 getActivity().getString ( R.string.config_default_name ) ) );
                 send2DLNAServer ( name );
+                if (getActivity() instanceof MediaCenterActivity) {
+                    MediaCenterActivity activity = (MediaCenterActivity) getActivity();
+                    activity.updateServerName(name);
+                }
             }
         }
 

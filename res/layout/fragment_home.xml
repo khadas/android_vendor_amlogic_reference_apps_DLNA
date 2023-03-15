@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <TextView
+        android:id="@+id/tv_server_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="35dp"
+        android:text="DLNA"
+        android:textColor="#ffffffff"
+        android:textSize="30sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_menu_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_home_menu"
+        app:layout_constraintLeft_toLeftOf="@id/tv_server_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_server_name" />
+
+    <TextView
+        android:id="@+id/tv_menu_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="@string/menu_notice"
+        android:textColor="#ffffffff"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_menu_icon"
+        app:layout_constraintLeft_toRightOf="@id/iv_menu_icon"
+        app:layout_constraintTop_toTopOf="@id/iv_menu_icon" />
+
+    <TextView
+        android:id="@+id/tv_ip_address"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:gravity="center_vertical"
+        android:textColor="#D8D8D8"
+        android:textSize="13sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10.98.18.169" />
+
+    <ImageView
+        android:id="@+id/iv_ip_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="7.5dp"
+        android:src="@drawable/ic_ip"
+        app:layout_constraintBottom_toBottomOf="@id/tv_ip_address"
+        app:layout_constraintRight_toLeftOf="@id/tv_ip_address"
+        app:layout_constraintTop_toTopOf="@id/tv_ip_address" />
+
+    <TextView
+        android:id="@+id/tv_network_name"
+        android:layout_width="77dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textColor="#BFBFBF"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_ip_icon"
+        app:layout_constraintRight_toLeftOf="@id/iv_ip_icon"
+        app:layout_constraintTop_toTopOf="@id/iv_ip_icon"
+        tools:text="TV-SE" />
+
+    <ImageView
+        android:id="@+id/iv_network_status"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/ic_no_signal"
+        app:layout_constraintBottom_toBottomOf="@id/tv_network_name"
+        app:layout_constraintRight_toLeftOf="@id/tv_network_name"
+        app:layout_constraintTop_toTopOf="@id/tv_network_name" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"
+        android:clipChildren="false"
+        android:descendantFocusability="blocksDescendants"
+        app:layout_constraintBottom_toTopOf="@id/vp_dmr_indicator"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_menu_notice">
+
+        <com.droidlogic.mediacenter.flip.FlipViewPager
+            android:id="@+id/dmr_flip"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,16:10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RadioGroup
+        android:id="@+id/vp_dmr_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginBottom="32dp"
+        android:descendantFocusability="blocksDescendants"
+        android:focusable="false"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/vi_bottom_divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_dmr_image"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_dmr_image"
+            android:button="@null"
+            android:focusable="false" />
+
+        <RadioButton
+            android:id="@+id/rb_dmr_audio"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/ic_dmr_audio"
+            android:button="@null"
+            android:focusable="false" />
+
+        <RadioButton
+            android:id="@+id/rb_dmr_video"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_dmr_video"
+            android:button="@null"
+            android:focusable="false" />
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        app:layout_constraintLeft_toLeftOf="@id/vp_dmr_indicator"
+        app:layout_constraintRight_toRightOf="@id/vp_dmr_indicator"
+        app:layout_constraintTop_toBottomOf="@id/vp_dmr_indicator">
+
+        <ImageView
+            android:id="@+id/img_point"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_indicator" />
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/vi_bottom_divider"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="16.5dp"
+        android:background="#979797"
+        app:layout_constraintBottom_toTopOf="@id/tv_net_prompt"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_net_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:gravity="center_vertical"
+        android:text="@string/connect_notice"
+        android:textColor="#ffffffff"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,7 +32,6 @@ import com.droidlogic.mediacenter.dlna.DmpService.DmpBinder;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.NetworkInfo.State;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.app.Activity;
@@ -45,10 +44,22 @@ import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.Group;
+import androidx.viewpager.widget.PagerAdapter;
+
+import static com.droidlogic.mediacenter.SettingsFragment.KEY_DEVICE_NAME;
 
 public class MediaCenterActivity extends Activity  implements FreshListener {
         private static final String TAG = "DLNA";
@@ -63,6 +74,8 @@ public class MediaCenterActivity extends Activity  implements FreshListener {
         private TextView mDeviceName = null;
         private Fragment mCallbacks;
         private Context mContent;
+        private Group mMenuGroup;
+
         @Override
         protected void onCreate ( Bundle savedInstanceState ) {
             super.onCreate ( savedInstanceState );
@@ -70,6 +83,7 @@ public class MediaCenterActivity extends Activity  implements FreshListener {
             mPrefUtils = new PrefUtils ( this );
             animation = ( AnimationSet ) AnimationUtils.loadAnimation ( this, R.anim.refresh_btn );
             mDeviceName = ( TextView ) findViewById ( R.id.device_name );
+            mMenuGroup = findViewById(R.id.menu_group);
             mContent = this;
             checkNet();
             LogStart();
@@ -135,13 +149,14 @@ public class MediaCenterActivity extends Activity  implements FreshListener {
         }
 
         public void showDeviceName() {
-            String serviceName = mPrefUtils.getString ( SettingsFragment.KEY_DEVICE_NAME, getString ( R.string.config_default_name ) );
+            String serviceName = mPrefUtils.getString ( KEY_DEVICE_NAME, getString ( R.string.config_default_name ) );
             mDeviceName.setText ( serviceName );
         }
 
         public void startMediaCenterService() {
             boolean startApk = mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_START_SERVICE, false );
-            boolean startReboot = mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_BOOT_CFG, false );
+            //boolean startReboot = mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_BOOT_CFG, false );
+            boolean startReboot = true;
             if ( startApk || startReboot ) {
                 Intent intent = new Intent ( mContent, MediaCenterService.class );
                 startService ( intent );
@@ -150,7 +165,8 @@ public class MediaCenterActivity extends Activity  implements FreshListener {
 
         private void stopMediaCenterService() {
             boolean startApk = mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_START_SERVICE, false );
-            boolean startReboot = mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_BOOT_CFG, false );
+            //boolean startReboot = mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_BOOT_CFG, false );
+            boolean startReboot = true;
             if ( !startReboot ) {
                 Intent intent = new Intent ( mContent, MediaCenterService.class );
                 stopService ( intent );
@@ -215,10 +231,21 @@ public class MediaCenterActivity extends Activity  implements FreshListener {
                 mCallbacks = getFragmentManager().findFragmentById ( R.id.frag_detail );
                 if ( mCallbacks instanceof Callbacks ) {
                     ( ( Callbacks ) mCallbacks ).onBackPressedCallback();
+                } else if (mMenuGroup.getVisibility() == View.VISIBLE) {
+                    mMenuGroup.setVisibility(View.INVISIBLE);
+                    Fragment fragment = getFragmentManager().findFragmentById(R.id.main_fragment);
+                    getFragmentManager().beginTransaction().show(fragment).commitAllowingStateLoss();
                 } else {
                     stopMediaCenterService();
                     stopDmpService();
                     MediaCenterActivity.this.finish();
+                }
+                return true;
+            } else if (keyCode == KeyEvent.KEYCODE_MENU) {
+                Fragment fragment = getFragmentManager().findFragmentById(R.id.main_fragment);
+                if (mMenuGroup.getVisibility() != View.VISIBLE) {
+                    mMenuGroup.setVisibility(View.VISIBLE);
+                    getFragmentManager().beginTransaction().hide(fragment).commitAllowingStateLoss();
                 }
                 return true;
             }
@@ -240,9 +267,10 @@ public class MediaCenterActivity extends Activity  implements FreshListener {
             if ( ( ethInfo != null && ethInfo.isConnectedOrConnecting() ) ||
                     ( wifiInfo != null && wifiInfo.isConnectedOrConnecting() ) ||
             ( mobileInfo != null && mobileInfo.isConnectedOrConnecting() ) ) {
-                if ( mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_START_SERVICE, false ) || mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_BOOT_CFG, false ) ) {
-                    startMediaCenterService();
-                }
+                //if ( mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_START_SERVICE, false ) || mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_BOOT_CFG, false ) ) {
+                //    startMediaCenterService();
+                //}
+                startMediaCenterService();
                 startDmpService();
             } else {
                 Intent mIntent = new Intent();
@@ -252,7 +280,15 @@ public class MediaCenterActivity extends Activity  implements FreshListener {
             }
         }
 
-        public interface Callbacks {
+    public void updateServerName(String name) {
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.main_fragment);
+        if (fragment instanceof HomeFragment) {
+            HomeFragment homeFragment = (HomeFragment) fragment;
+            homeFragment.updateServerName(name);
+        }
+    }
+
+    public interface Callbacks {
             public void onBackPressedCallback();
         }
 

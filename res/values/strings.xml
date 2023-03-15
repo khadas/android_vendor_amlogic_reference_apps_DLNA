@@ -135,4 +135,8 @@
     <string name="title_activity_music">Air Music</string>
     <string name="error_info">Failed to get network files,automatically play the next song</string>
     <string name="error_exit">Failed to Create MusicPlayer,Exit.</string>
+
+    <string name="menu_notice">Press the menu key to setting</string>
+    <string name="connect_notice">Tips：Please make sure your mobile device is on the same network as “Smart_TV”</string>
+    <string name="network_ethernet">ETHERNET</string>
 </resources>

@@ -121,9 +121,10 @@ public class WeakRefService extends Service {
                     mContext.sendBroadcast ( mNetIntent );
                     break;
                 case STARTSERVICE:
-                    if (mPrefUtils.getBooleanVal(DmpStartFragment.KEY_BOOT_CFG,false)) {
-                        mContext.startService (new Intent(mContext, MediaCenterService.class));
-                    }
+                    mContext.startService (new Intent(mContext, MediaCenterService.class));
+                    //if (mPrefUtils.getBooleanVal(DmpStartFragment.KEY_BOOT_CFG,false)) {
+                    //    mContext.startService (new Intent(mContext, MediaCenterService.class));
+                    //}
                     break;
             }
         }
