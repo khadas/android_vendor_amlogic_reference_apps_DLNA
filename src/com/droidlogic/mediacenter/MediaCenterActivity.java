@@ -294,9 +294,9 @@ public class MediaCenterActivity extends Activity  implements FreshListener {
 
         public void LogStart() {
             if ( PrefUtils.getProperties ( "rw.app.dlna.debug", "false" ).equals("true") ) {
-                org.cybergarage.util.Debug.on(); //LOG OFF
+                org.cybergarage.util.Debug.on(); //LOG ON
             } else {
-                org.cybergarage.util.Debug.off();  //LOG ON
+                org.cybergarage.util.Debug.off();  //LOG OFF
             }
         }
         private BroadcastReceiver mHomeKeyReceiver =
