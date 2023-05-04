@@ -105,6 +105,8 @@ public class FucFragment extends ListFragment {
                 Fragment dmpFragment = getFragmentManager().findFragmentById ( R.id.frag_detail );
                 if ( mCurCheckPosition == ITEM_DMPSCAN ) {
                     showDmpScan ( dmpFragment );
+                } else if ( mCurCheckPosition == ITEM_DMPSERVICE ) {
+                    showDmpShow(dmpFragment);
                 } else if ( mCurCheckPosition == ITEM_ABOUT ) {
                     showAboutFragment ( dmpFragment );
                 }
@@ -148,15 +150,15 @@ public class FucFragment extends ListFragment {
             map.put ( LIST_IMG, R.drawable.dmp );
             map.put ( LIST_SUMMARY, getString ( R.string.dmp_summary ) );
             list.add ( map );
-            //map = new HashMap<String, Object>();
-            //map.put ( LIST_TITLE, getString ( R.string.dmr_title ) );
-            //map.put ( LIST_IMG, R.drawable.dmr );
-            //map.put ( LIST_SUMMARY, getString ( R.string.dmr_summary ) );
-            //list.add ( map );
             map = new HashMap<String, Object>();
             map.put ( LIST_TITLE, getString ( R.string.about ) );
             map.put ( LIST_IMG, R.drawable.settings );
             map.put ( LIST_SUMMARY, getString ( R.string.settings_summary ) );
+            list.add ( map );
+            map = new HashMap<String, Object>();
+            map.put ( LIST_TITLE, getString ( R.string.dmr_title ) );
+            map.put ( LIST_IMG, R.drawable.dmr );
+            map.put ( LIST_SUMMARY, getString ( R.string.dmr_summary ) );
             list.add ( map );
             return list;
         }

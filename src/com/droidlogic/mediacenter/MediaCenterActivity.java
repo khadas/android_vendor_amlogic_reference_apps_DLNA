@@ -154,23 +154,13 @@ public class MediaCenterActivity extends Activity  implements FreshListener {
         }
 
         public void startMediaCenterService() {
-            boolean startApk = mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_START_SERVICE, false );
-            //boolean startReboot = mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_BOOT_CFG, false );
-            boolean startReboot = true;
-            if ( startApk || startReboot ) {
-                Intent intent = new Intent ( mContent, MediaCenterService.class );
-                startService ( intent );
-            }
+            Intent intent = new Intent ( mContent, MediaCenterService.class );
+            startService ( intent );
         }
 
         private void stopMediaCenterService() {
-            boolean startApk = mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_START_SERVICE, false );
-            //boolean startReboot = mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_BOOT_CFG, false );
-            boolean startReboot = true;
-            if ( !startReboot ) {
-                Intent intent = new Intent ( mContent, MediaCenterService.class );
-                stopService ( intent );
-            }
+            Intent intent = new Intent ( mContent, MediaCenterService.class );
+            stopService ( intent );
         }
 
         /* (non-Javadoc)
@@ -267,9 +257,6 @@ public class MediaCenterActivity extends Activity  implements FreshListener {
             if ( ( ethInfo != null && ethInfo.isConnectedOrConnecting() ) ||
                     ( wifiInfo != null && wifiInfo.isConnectedOrConnecting() ) ||
             ( mobileInfo != null && mobileInfo.isConnectedOrConnecting() ) ) {
-                //if ( mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_START_SERVICE, false ) || mPrefUtils.getBooleanVal ( DmpStartFragment.KEY_BOOT_CFG, false ) ) {
-                //    startMediaCenterService();
-                //}
                 startMediaCenterService();
                 startDmpService();
             } else {

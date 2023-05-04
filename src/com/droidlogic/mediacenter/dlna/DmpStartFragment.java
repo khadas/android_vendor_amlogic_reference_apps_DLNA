@@ -39,9 +39,7 @@ import com.droidlogic.mediacenter.R;
 public class DmpStartFragment extends SettingsPreferenceFragment implements
         OnSharedPreferenceChangeListener, OnPreferenceChangeListener {
         private static final String TAG               = "SettingsPreferences";
-        public static final String  KEY_START_SERVICE = "start_dmp";
         public static final String  KEY_BOOT_CFG      = "boot_dmp";
-        private SwitchPreference    mStartServicePref;
         private SwitchPreference    mBootCfgPref;
         /* (non-Javadoc)
          * @see android.preference.Preference.OnPreferenceChangeListener#onPreferenceChange(android.preference.Preference, java.lang.Object)
@@ -59,21 +57,9 @@ public class DmpStartFragment extends SettingsPreferenceFragment implements
                                                 String key ) {
             Debug.d ( "startfragment", "onSharedPreferenceChanged:" + key );
             Intent intent = new Intent ( getActivity(), MediaCenterService.class );
-            if ( key.equals ( KEY_START_SERVICE ) ) {
-                if ( mStartServicePref.isChecked() ) {
-                    getActivity().startService ( intent );
-                } else {
-                    if ( !mBootCfgPref.isChecked() ) {
-                        getActivity().stopService ( intent );
-                    }
-                }
-            } else if ( key.equals ( KEY_BOOT_CFG ) ) {
+            if ( key.equals ( KEY_BOOT_CFG ) ) {
                 if ( mBootCfgPref.isChecked() ) {
                     getActivity().startService ( intent );
-                } else {
-                    if ( !mStartServicePref.isChecked() ) {
-                        getActivity().stopService ( intent );
-                    }
                 }
             }
         }
@@ -84,15 +70,12 @@ public class DmpStartFragment extends SettingsPreferenceFragment implements
         }
 
         private void setPreferenceListeners ( OnPreferenceChangeListener listener ) {
-            mStartServicePref.setOnPreferenceChangeListener ( listener );
             mBootCfgPref.setOnPreferenceChangeListener ( listener );
         }
         @Override
         public void onCreate ( Bundle icicle ) {
             super.onCreate ( icicle );
             addPreferencesFromResource ( R.xml.settings_dlna );
-            mStartServicePref = ( SwitchPreference ) findPreference ( KEY_START_SERVICE );
-            mStartServicePref.setLayoutResource(R.layout.preference);
             mBootCfgPref = ( SwitchPreference ) findPreference ( KEY_BOOT_CFG );
             mBootCfgPref.setLayoutResource(R.layout.preference);
         }
