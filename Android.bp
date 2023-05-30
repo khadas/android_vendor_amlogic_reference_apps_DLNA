@@ -15,7 +15,6 @@ android_app {
 
     static_libs: ["libdlna","androidx.appcompat_appcompat","androidx-constraintlayout_constraintlayout"],
     srcs: ["src/**/*.java"],
-    proprietary: true,
     certificate: "platform",
     optimize: {
         enabled: false,
@@ -24,6 +23,7 @@ android_app {
         enabled: false,
     },
     sdk_version: "current",
+    product_specific: true,
 }
 
 java_import {
