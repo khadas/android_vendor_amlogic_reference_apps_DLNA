@@ -58,7 +58,7 @@ public class WeakRefService extends Service {
         IntentFilter filter = new IntentFilter();
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         filter.addAction(WIFI_AP_STATE_CHANGED_ACTION);
-        this.registerReceiver(mReceiver, filter);
+        this.registerReceiver(mReceiver, filter, Context.RECEIVER_EXPORTED);
         mContext = this;
         mPrefUtils = new PrefUtils(this);
     }

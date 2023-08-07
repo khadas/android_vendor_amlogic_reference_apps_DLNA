@@ -372,7 +372,7 @@ public class VideoPlayer extends Activity implements OnInfoListener// implements
             filter.addAction ( AmlogicCP.UPNP_SETVOLUME_ACTION );
             filter.addAction ( AmlogicCP.UPNP_SETMUTE_ACTION );
             filter.addAction ( MediaRendererDevice.PLAY_STATE_SEEK );
-            registerReceiver ( mUPNPReceiver, filter );
+            registerReceiver ( mUPNPReceiver, filter, Context.RECEIVER_EXPORTED );
         }
 
         private void before() {

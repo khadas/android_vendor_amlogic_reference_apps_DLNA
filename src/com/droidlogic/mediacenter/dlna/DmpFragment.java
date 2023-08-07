@@ -325,7 +325,7 @@ public class DmpFragment extends ListFragment {
             IntentFilter filter = new IntentFilter();
             filter.addAction ( AmlogicCP.UPNP_DMS_ADDED_ACTION );
             filter.addAction ( AmlogicCP.UPNP_DMS_REMOVED_ACTION );
-            getActivity().registerReceiver ( mDevReceiver, filter );
+            getActivity().registerReceiver ( mDevReceiver, filter, Context.RECEIVER_EXPORTED );
             getDevData();
         }
 

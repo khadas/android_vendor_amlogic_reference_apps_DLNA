@@ -330,7 +330,7 @@ public class ImageFromUrl extends Activity {
                 IntentFilter filter = new IntentFilter();
                 filter.addAction ( AmlogicCP.UPNP_STOP_ACTION );
                 filter.addAction ( AmlogicCP.UPNP_PLAY_ACTION );
-                registerReceiver ( imageFromUrlReceiver, filter );
+                registerReceiver ( imageFromUrlReceiver, filter, Context.RECEIVER_EXPORTED );
                 reg = true;
             }
         }

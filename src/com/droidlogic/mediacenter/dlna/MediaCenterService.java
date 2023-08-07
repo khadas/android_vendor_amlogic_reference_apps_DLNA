@@ -361,7 +361,7 @@ public class MediaCenterService extends Service {
                 f.addAction(MediaRendererDevice.PLAY_STATE_SETVOLUME);
                 f.addAction(SERVICE_NAME_CHANGE);
                 f.addAction(DEVICE_STATUS_CHANGE);
-                registerReceiver(mDMRServiceListener, f);
+                registerReceiver(mDMRServiceListener, f, Context.RECEIVER_EXPORTED);
                 isRegistReceiver = true;
             }
         }

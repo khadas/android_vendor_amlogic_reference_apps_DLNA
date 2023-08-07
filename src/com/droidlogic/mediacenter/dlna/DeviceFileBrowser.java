@@ -56,7 +56,7 @@ import android.widget.Toast;
  */
 public class DeviceFileBrowser extends ListFragment implements Callbacks {
         private String                          mediaServerName;
-        private static final boolean DEBUG = false;
+        private static final boolean DEBUG = true;
         private static final String             LABLE                = "media_name";
         private static final String             TAG                  = "DeviceBrowser";
         public static final String              CURENT_POS = "play_curpos";

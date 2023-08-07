@@ -36,7 +36,7 @@ public class FlipViewPager extends ViewPager {
 
     @Override
     protected int getChildDrawingOrder(int childCount, int i) {
-        Log.i("getChildDrawingOrder", "childCount:" + childCount + "--i:" + i);
+//        Log.i("getChildDrawingOrder", "childCount:" + childCount + "--i:" + i);
         if (childCount == 3) {
             switch (i) {
                 case 0:

@@ -79,7 +79,7 @@ public class DmpService extends Service {
             IntentFilter filter = new IntentFilter();
             initDMP();
             filter.addAction ( NETWORK_ERROR );
-            registerReceiver ( mDMPServiceListener, filter );
+            registerReceiver ( mDMPServiceListener, filter, Context.RECEIVER_EXPORTED);
             return mDmpBinder;
         }
         private BroadcastReceiver mDMPServiceListener = new BroadcastReceiver() {

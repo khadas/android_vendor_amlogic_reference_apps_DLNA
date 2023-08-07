@@ -1458,7 +1458,7 @@ public class MusicPlayer extends Activity implements OnPreparedListener,
             filter.addAction ( MediaRendererDevice.PLAY_STATE_SEEK );
             filter.addAction ( AmlogicCP.UPNP_SETVOLUME_ACTION );
             filter.addAction ( AmlogicCP.UPNP_SETMUTE_ACTION );
-            registerReceiver ( mUPNPReceiver, filter );
+            registerReceiver ( mUPNPReceiver, filter, Context.RECEIVER_EXPORTED );
             /*start*/
             handlerUI.removeMessages ( SHOW_START );
             handlerUI.sendEmptyMessageDelayed ( SHOW_START, BUFFER_INTERVAL );

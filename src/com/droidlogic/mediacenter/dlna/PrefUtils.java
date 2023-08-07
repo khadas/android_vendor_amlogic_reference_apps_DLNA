@@ -34,7 +34,6 @@ import java.lang.reflect.Field;
 public class PrefUtils {
         private Context             mContent;
         private SharedPreferences          mPrefs;
-        public static final Boolean DEBUG              = false;
         public static final String  TAG                = "DLNA";
         /*
         public static final String  AUTOENABLEWHENBOOT = "boot_cfg_dmp";
